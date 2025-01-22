@@ -1,61 +1,100 @@
-Description du projet
+# Lovidate
 
-Lovidate est une application de rencontre moderne et intuitive permettant aux utilisateurs de swiper, matcher, et discuter avec des personnes ayant mutuellement exprimé leur intérêt. Ce projet a pour objectif de proposer une version minimaliste et fonctionnelle d'une application de rencontre, en mettant l'accent sur l'expérience utilisateur et la simplicité.
+## Cahier des Charges - Application de Rencontre (MVP)
 
-Objectifs du projet
+### 1. Description du projet
+L'objectif de ce projet est de développer une application de rencontre permettant aux utilisateurs de swiper, matcher, et discuter avec d'autres personnes. L'objectif est de fournir une plateforme intuitive et fonctionnelle avec les fonctionnalités essentielles suivantes :
 
-Fonctionnalités principales :
+- Swipe pour indiquer un intérêt ou non.
+- Système de match pour connecter les utilisateurs ayant un intérêt mutuel.
+- Chat entre utilisateurs ayant matché.
 
-Swipe : Permet aux utilisateurs de swiper à gauche ou à droite pour indiquer leur intérêt ou leur absence d'intérêt.
+### 2. Users Stories et Critères d'acceptation
 
-Match : Met en relation deux utilisateurs lorsque les deux ont exprimé un intérêt mutuel.
+#### 2.1 Swipe
+**User Story 1** : En tant qu'utilisateur, je veux pouvoir swiper à gauche ou à droite sur des profils afin d'exprimer mon intérêt ou mon absence d'intérêt.
 
-Chat : Offre une messagerie simple permettant aux utilisateurs ayant matché d'échanger des messages.
+**Critères d'acceptation** :
 
-Proposer une interface claire et intuitive en utilisant les technologies modernes.
+- Chaque profil doit afficher les informations suivantes : photo, prénom, âge, localisation.
+- Un bouton ou un geste doit permettre de swiper à gauche ("pass") ou à droite ("like").
 
-Technologies utilisées :
+#### 2.2 Match
+**User Story 2** : En tant qu'utilisateur, je veux être informé lorsque j'ai un match avec un autre utilisateur.
 
-Frontend : React.js et JavaScript
+**Critères d'acceptation** :
 
-Backend : PHP (REST API pour gérer les interactions avec la base de données)
+- Une notification doit apparaître lorsqu'un match est détecté.
+- Les utilisateurs matchés doivent être affichés dans une section dédiée "Matches".
 
-Base de données : MySQL ou PostgreSQL
+#### 2.3 Chat
+**User Story 3** : En tant qu'utilisateur, je veux pouvoir discuter avec mes matchs afin de mieux les connaître.
 
-Fonctionnalités principales
+**Critères d'acceptation** :
 
-1. Swipe
+- Une interface de chat doit être disponible pour chaque match.
+- Les utilisateurs doivent pouvoir envoyer et recevoir des messages en temps réel.
+- Les messages doivent inclure le texte et l'heure d'envoi.
 
-Interface intuitive permettant aux utilisateurs de swiper à gauche ("pass") ou à droite ("like").
+### 3. Architecture Technique
 
-Gestion des profils affichés avec des critères basiques (préférences, localisation).
+#### 3.1 Langages et Technologies
+- **Backend** : PHP (REST API)
+- **Frontend** : React.js et JavaScript
+- **Base de données** : MySQL
 
-2. Match
+#### 3.2 Base de données
 
-Notification automatique lorsqu'un match est détecté entre deux utilisateurs.
+**Table utilisateurs**
+- id : Identifiant unique de l'utilisateur.
+- prenom : Prénom de l'utilisateur.
+- age : Âge de l'utilisateur.
+- localisation : Localisation de l'utilisateur.
+- photo : URL de la photo de profil.
 
-Gestion des correspondances dans une section "Matches".
+**Table matchs**
+- id : Identifiant unique du match.
+- utilisateur_1_id : Référence au premier utilisateur.
+- utilisateur_2_id : Référence au deuxième utilisateur.
+- date_match : Date et heure du match.
 
-3. Chat
+**Table messages**
+- id : Identifiant unique du message.
+- match_id : Référence au match associé.
+- utilisateur_id : Référence à l'expéditeur du message.
+- contenu : Texte du message.
+- date_envoi : Date et heure de l'envoi.
 
-Messagerie en temps réel pour les utilisateurs ayant matché.
+### 4. Commandes et environnement
 
-Interface simple pour envoyer et recevoir des messages.
+Création d'un fichier `.env.local` dans le dossier backend puis le compléter :
 
-Architecture du projet
+```
+DB_HOST=localhost
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+```
 
-Frontend :
+#### Lancement du backend
 
-Interface utilisateur développée avec React pour une expérience fluide.
+```bash
+cd backend
+composer install
+php -S localhost:8000
+```
 
-Composants réutilisables pour les différentes fonctionnalités.
+#### Lancement du frontend
 
-Backend :
+```bash
+cd frontend
+npm install
+npm start
+```
 
-API RESTful en PHP pour gérer les données utilisateur, les matchs et les messages.
+### 5. Livrables
 
-Validation des entrées et gestion de la sécurité (authentification, sessions).
+- Application fonctionnelle avec toutes les fonctionnalités décrites.
+- Documentation technique pour les développeurs (facultatif).
+- Guide d'utilisation pour les utilisateurs finaux (facultatif).
 
-Base de données :
-
-Tables pour les utilisateurs, les préférences, les matchs et les messages.
