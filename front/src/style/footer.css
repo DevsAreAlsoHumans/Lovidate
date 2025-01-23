@@ -1,0 +1,61 @@
+/* Style général pour la page */
+html, body {
+    height: 100%;  /* S'assurer que le body occupe toute la hauteur de la fenêtre */
+    margin: 0;  /* Enlever les marges par défaut */
+    display: flex;
+    flex-direction: column;  /* Disposition en colonne pour tout le contenu */
+}
+
+/* Conteneur principal qui contient le contenu */
+.main-content {
+    flex: 1;  /* Le contenu prend tout l'espace disponible avant le footer */
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+/* Style général pour le footer */
+footer {
+    background-color: #333;  /* Fond sombre pour le footer */
+    color: white;  /* Texte en blanc */
+    padding: 20px 0;  /* Espacement vertical dans le footer */
+    width: 100%;  /* Le footer occupe toute la largeur de la page */
+    text-align: center;  /* Centrer le texte */
+    position: fixed;  /* Fixe le footer en bas de la page */
+    bottom: 0;  /* Positionner le footer tout en bas */
+    left: 0;  /* Aligner à gauche */
+    z-index: 1000;  /* Assurer que le footer est au-dessus des autres éléments */
+}
+
+/* Style des éléments de la liste dans le footer */
+footer ul {
+    list-style-type: none;  /* Enlever les puces */
+    display: flex;  /* Disposition en ligne pour les éléments de la liste */
+    justify-content: center;  /* Centrer les éléments */
+    padding: 0;  /* Enlever le padding par défaut */
+}
+
+footer li {
+    margin: 0 15px;  /* Espacement horizontal entre les éléments de la liste */
+}
+
+footer li a {
+    text-decoration: none;  /* Enlever la décoration de lien */
+    color: white;  /* Texte en blanc */
+    font-size: 16px;  /* Taille de texte */
+    transition: color 0.3s;  /* Transition pour le changement de couleur */
+}
+
+footer li a:hover {
+    color: #4CAF50;  /* Changer la couleur au survol */
+}
+
+/* Pour les petits écrans */
+@media (max-width: 768px) {
+    footer ul {
+        justify-content: center;  /* Centrer les éléments */
+    }
+
+    footer li {
+        margin-bottom: 0;  /* Enlever l'espacement vertical entre les éléments */
+    }
+}
