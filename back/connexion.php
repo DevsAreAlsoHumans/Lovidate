@@ -5,7 +5,6 @@ header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Vérifier si les champs sont présents
 if (empty($data['prenom']) || empty($data['password'])) {
     echo json_encode(['success' => false, 'message' => 'Prénom et mot de passe requis']);
     exit;
