@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="ae919a3d-021e-4e9b-aed9-d3207f6fea4c" name="postgres@localhost Mapping">
+      <data-sources db="bd72339f-1204-4fb8-80de-c6058201cff8" />
+      <scope>
+        <node kind="database" qname="Lovidate" />
+      </scope>
+    </mapping>
+  </component>
+</project>
