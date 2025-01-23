@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Router>
       <div>
-        <h1>Bienvenue sur l'application</h1>
+        <h1>Bienvenue sur Lovidate</h1>
         <nav>
           <ul>
             <li><Link to="/profil">Profil</Link></li>
