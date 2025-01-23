@@ -1,5 +1,5 @@
 <?php
-require '../db.php';
+require 'back/db.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -18,12 +18,12 @@ if ($method === 'GET') {
     $age = $data['age'];
     $localisation = $data['localisation'];
     $photo = $data['photo'];
-    $password = $data['password'];
+    $password = $data['password']; 
     $genre = $data['genre'];
     $profilRechercher = $data['profilRechercher'];
 
-    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profilRechercher) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$prenom, $age, $localisation, $photo]);
+    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profiRechercher) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$prenom, $age, $localisation, $photo, $password, $genre, $profilRechercher]);
 
     echo json_encode(["message" => "Utilisateur ajouté avec succès"]);
 }
