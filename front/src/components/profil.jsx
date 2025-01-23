@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-//import './profil.css';
+import './profil.css';
 
 const Profil = () => {
   const [users, setUsers] = useState([]);
@@ -8,7 +8,7 @@ const Profil = () => {
 
   // Fonction pour récupérer les données de l'API PHP
   useEffect(() => {
-    axios.get('http://localhost/lovidate/back/routes/utilisateurs.php')
+    axios.get('http://localhost/lovidate/back/routesn/utilisateurs.php')
       .then(response => {
         setUsers(response.data);
         setLoading(false);
