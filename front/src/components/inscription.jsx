@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import '../style/inscription.css';
 
-const InscriptionForm = () => {
+const Inscription = () => {
     // Déclaration des états pour chaque champ du formulaire
     const [prenom, setPrenom] = useState('');
     const [age, setAge] = useState('');
@@ -15,7 +16,7 @@ const InscriptionForm = () => {
         e.preventDefault();
 
         // Vérification des champs obligatoires
-        if (!prenom || !age || !password || !localisation || !genre || !profilRechercher) {
+        if (!prenom || !age || !password || !localisation || !genre) {
             setMessage('Tous les champs sont requis');
             return;
         }
@@ -27,7 +28,6 @@ const InscriptionForm = () => {
             photo,
             password,
             genre,
-            profilRechercher,
         };
 
         // Envoi des données au serveur avec fetch
@@ -101,19 +101,6 @@ const InscriptionForm = () => {
                     <option value="femme">Femme</option>
                     <option value="autre">Autre</option>
                 </select>
-
-                <label htmlFor="profilRechercher">Profil recherché :</label>
-                <select
-                    id="profilRechercher"
-                    value={profilRechercher}
-                    onChange={(e) => setProfilRechercher(e.target.value)}
-                    required
-                >
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                    <option value="autre">Autre</option>
-                </select>
-
                 <label htmlFor="password">Mot de passe :</label>
                 <input
                     type="password"
@@ -131,4 +118,4 @@ const InscriptionForm = () => {
     );
 };
 
-export default InscriptionForm;
+export default Inscription;
