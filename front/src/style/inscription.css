@@ -1,0 +1,112 @@
+/* Exemple de style pour la page d'inscription */
+* {
+    box-sizing: border-box; /* Assure que la largeur des éléments inclut les bordures et le padding */
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;  /* Ajout du padding autour du conteneur pour espacer les éléments */
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Ajout d'un rayon de bordure pour des coins arrondis */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input,
+select,
+button {
+    width: 100%;  /* Garantit que les éléments de formulaire occupent toute la largeur du conteneur */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.message.error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    /* Pour les écrans de taille mobile/tablette */
+    .container {
+        padding: 20px;  /* Réduire le padding pour les petits écrans */
+        max-width: 90%;  /* Prendre une plus grande largeur sur les petits écrans */
+    }
+
+    h2 {
+        font-size: 24px; /* Réduire la taille du titre */
+        margin-bottom: 15px;
+    }
+
+    input,
+    select,
+    button {
+        padding: 12px;  /* Ajuster la taille du padding des éléments de formulaire */
+    }
+
+    button {
+        font-size: 16px;  /* Réduire la taille du texte du bouton */
+    }
+
+    .message {
+        font-size: 14px;  /* Ajuster la taille du texte du message */
+        padding: 8px;     /* Réduire le padding du message */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Pour les écrans très petits (mobiles en mode portrait) */
+    .container {
+        padding: 15px;  /* Encore plus petit padding */
+    }
+
+    h2 {
+        font-size: 20px;  /* Plus petite taille pour le titre */
+    }
+
+    input,
+    select,
+    button {
+        font-size: 14px;  /* Réduire la taille de la police dans les champs */
+    }
+
+    .message {
+        font-size: 12px;  /* Réduire encore la taille du message */
+    }
+}
