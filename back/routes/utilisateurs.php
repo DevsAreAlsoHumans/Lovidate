@@ -19,7 +19,7 @@ if ($method === 'GET') {
     $localisation = $data['localisation'];
     $photo = $data['photo'];
 
-    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo) VALUES (?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$prenom, $age, $localisation, $photo]);
 
     echo json_encode(["message" => "Utilisateur ajouté avec succès"]);
