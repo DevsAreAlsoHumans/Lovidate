@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../style/inscription.css';
 import '../style/connexion.css';
 
-const Connexion = () => {
-    // Déclaration des états pour chaque champ du formulaire
+const Connexion = ({ setIsAuthenticated }) => {
     const [prenom, setPrenom] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState(''); // Pour gérer le type de message (succès ou erreur)
+    const [messageType, setMessageType] = useState('');
+    const navigate = useNavigate();
 
-    // Gestion de la soumission du formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -19,12 +20,8 @@ const Connexion = () => {
             return;
         }
 
-        const data = {
-            prenom,
-            password,
-        };
+        const data = { prenom, password };
 
-        // Envoi des données au serveur avec fetch
         try {
             const response = await fetch('connexion.php', {
                 method: 'POST',
@@ -39,6 +36,9 @@ const Connexion = () => {
             if (result.success) {
                 setMessage('Connexion réussie !');
                 setMessageType('success');
+                localStorage.setItem('user', JSON.stringify(result.user));
+                setIsAuthenticated(true);
+                navigate('/');
             } else {
                 setMessage('Les informations de connexion ne correspondent pas');
                 setMessageType('error');
@@ -54,27 +54,17 @@ const Connexion = () => {
             <h2>Connexion</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="prenom">Prénom :</label>
-                <input
-                    type="text"
-                    id="prenom"
-                    value={prenom}
-                    onChange={(e) => setPrenom(e.target.value)}
-                    required
-                />
+                <input type="text" id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required/>
 
                 <label htmlFor="password">Mot de passe :</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
 
                 <button type="submit">Se connecter</button>
             </form>
 
             {message && <div className={`message ${messageType}`}>{message}</div>}
+
+            <p>Vous n'avez pas de compte ? <Link to="/inscription">Inscrivez-vous ici</Link></p>
         </div>
     );
 };
