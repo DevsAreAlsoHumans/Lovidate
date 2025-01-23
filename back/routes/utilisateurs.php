@@ -18,6 +18,9 @@ if ($method === 'GET') {
     $age = $data['age'];
     $localisation = $data['localisation'];
     $photo = $data['photo'];
+    $password = $data['password'];
+    $genre = $data['genre'];
+    $profilRechercher = $data['profilRechercher'];
 
     $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profilRechercher) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$prenom, $age, $localisation, $photo]);
