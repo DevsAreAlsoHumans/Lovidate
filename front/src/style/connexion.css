@@ -1,0 +1,19 @@
+/* Style de base pour les messages */
+.message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Message de succès */
+.message.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Message d'erreur */
+.message.error {
+    background-color: #f44336;
+    color: white;
+}
