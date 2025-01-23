@@ -41,13 +41,14 @@ L'objectif de ce projet est de développer une application de rencontre permetta
 #### 3.1 Langages et Technologies
 - **Backend** : PHP (REST API)
 - **Frontend** : React.js et JavaScript
-- **Base de données** : MySQL
+- **Base de données** : PostgreSQL
 
 #### 3.2 Base de données
 
 **Table utilisateurs**
 - id : Identifiant unique de l'utilisateur.
 - prenom : Prénom de l'utilisateur.
+- mot_de_passe : mot de passe de l'utilisateur.
 - age : Âge de l'utilisateur.
 - localisation : Localisation de l'utilisateur.
 - photo : URL de la photo de profil.
