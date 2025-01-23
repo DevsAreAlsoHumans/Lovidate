@@ -12,7 +12,7 @@ if (!$data || empty($data['prenom']) || empty($data['age']) || empty($data['pass
 
 $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-$query = "INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profilRechercher) VALUES (:prenom, :age, :localisation, :photo, :password, :genre, :profilRechercher)";
+$query = "INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre) VALUES (:prenom, :age, :localisation, :photo, :password, :genre)";
 $stmt = $pdo->prepare($query);
 
 // Lier les paramètres
@@ -22,7 +22,6 @@ $stmt->bindParam(':localisation', $data['localisation']);
 $stmt->bindParam(':photo', $data['photo']);
 $stmt->bindParam(':password', $passwordHash);
 $stmt->bindParam(':genre', $data['genre']);
-$stmt->bindParam(':profilRechercher', $data['profilRechercher']);
 
 try {
     $stmt->execute();
