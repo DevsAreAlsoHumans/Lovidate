@@ -8,21 +8,20 @@ const Home = () => {
   return (
     <Router>
       <div>
-        <h1>Bienvenue sur Lovidate</h1>
-        <nav>
-          <ul>
-            <li><Link to="/profil">Profil</Link></li>
-            <li><Link to="/notification">Notification</Link></li>
-            <li><Link to="/message">Tchat</Link></li>
-          </ul>
-        </nav>
-
+        
         <Routes>
           <Route path="/profil" element={<Profil />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/message" element={<Messagerie />} />
           <Route path="/" element={<h2>Bienvenue sur la page d'accueil</h2>} />
         </Routes>
+        <footer>
+          <ul>
+            <li><Link to="/message">Tchat</Link></li>
+          </ul>
+        </footer>
+
+       
       </div>
     </Router>
   );

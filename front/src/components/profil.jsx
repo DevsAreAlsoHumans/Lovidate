@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import TinderCard from 'react-tinder-card';
-import '../css/style.css';  
+import '../css/style.css';
 
 const Profil = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Données factices en cas d'erreur API
-  const fakeUsers = [
+  const [users, setUsers] = useState([
     {
       id: 1,
       prenom: "Alice",
@@ -37,7 +32,7 @@ const Profil = () => {
       localisation: "Bordeaux, France",
       photo: "https://randomuser.me/api/portraits/men/2.jpg"
     }
-  ];
+  ]);
 
   const swiped = (direction, userName) => {
     console.log(`${userName} a été swipé vers la ${direction}`);
@@ -48,54 +43,32 @@ const Profil = () => {
     }
 
     // Supprimer le profil de la liste
-    setUsers((prevUsers) => prevUsers.slice(1));
+    setUsers((prevUsers) => prevUsers.filter(user => user.prenom !== userName));
   };
-
-  useEffect(() => {
-    axios.get('http://localhost/back/routes/utilisateurs.php')
-      .then(response => {
-        setUsers(response.data);
-      })
-      .catch(error => {
-        console.error("Erreur lors de la récupération des données utilisateur :", error);
-        setUsers(fakeUsers);  // Remplacer par les données factices en cas d'erreur
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <p>Chargement du profil...</p>;
-  }
-
-  if (users.length === 0) {
-    return <p>Aucun utilisateur trouvé.</p>;
-  }
 
   return (
     <div className="profile-container">
-    {users.length > 0 ? (
-      users.map((user) => (
+      {users.map((user) => (
         <TinderCard
           key={user.id}
           className="swipe"
           onSwipe={(dir) => swiped(dir, user.prenom)}
           preventSwipe={['up', 'down']}  // Empêche le swipe haut/bas
         >
-          <div className="profile-card">
-            <img src={user.photo} alt={user.prenom} className="profile-photo" />
-            <h2>{user.prenom}, {user.age}</h2>
-            <p className="profile-location">📍 {user.localisation}</p>
+          <div 
+            className="profile-content"
+            style={{ backgroundImage: `url(${user.photo})` }}
+          >
+            <div className="profile-info">
+              <h2>{user.prenom}, {user.age}</h2>
+              <p className="profile-location">📍 {user.localisation}</p>
+            </div>
           </div>
         </TinderCard>
-      ))
-    ) : (
-      <h2>Aucun autre profil à afficher</h2>
-    )}
-  </div>
-
+      ))}
+    </div>
   );
+  
 };
 
 export default Profil;
