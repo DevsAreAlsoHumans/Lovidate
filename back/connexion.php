@@ -26,6 +26,7 @@ if (!$user) {
 }
 
 if (password_verify($password, $user['password'])) {
+    unset($user['password']);
     echo json_encode(['success' => true, 'message' => 'Connexion réussie', 'user' => $user]);
 } else {
     echo json_encode(['success' => false, 'message' => 'Mot de passe incorrect']);

@@ -22,7 +22,7 @@ if ($method === 'GET') {
     $genre = $data['genre'];
     $profilRechercher = $data['profilRechercher'];
 
-    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profiRechercher) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO utilisateurs (prenom, age, localisation, photo, password, genre, profilrechercher) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$prenom, $age, $localisation, $photo, $password, $genre, $profilRechercher]);
 
     echo json_encode(["message" => "Utilisateur ajouté avec succès"]);
