@@ -3,18 +3,22 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Centrer verticalement */
+    align-items: center; /* Centrer horizontalement */
 }
 
+.container {
+    width: 80%; /* Exemple de largeur */
+    max-width: 1200px; /* Exemple de largeur maximale */
+}
 
 .main-content {
     flex: 1;
     padding: 20px;
-    background-color: #f4f4f9;
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    color: #000000;
     padding: 20px 0;
     width: 100%;
     text-align: center;
@@ -37,7 +41,7 @@ footer li {
 
 footer li a {
     text-decoration: none;
-    color: white;
+    color: #000000;
     font-size: 16px;
     transition: color 0.3s;
 }
