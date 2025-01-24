@@ -31,7 +31,6 @@ const Inscription = () => {
 
     return (
         <div className="container">
-            <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="prenom">Prénom :</label>
                 <input type="text" id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required/>

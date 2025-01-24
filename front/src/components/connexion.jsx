@@ -51,7 +51,6 @@ const Connexion = ({ setIsAuthenticated }) => {
 
     return (
         <div className="container">
-            <h2>Connexion</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="prenom">Prénom :</label>
                 <input type="text" id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required/>
