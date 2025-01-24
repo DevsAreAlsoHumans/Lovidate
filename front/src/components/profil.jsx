@@ -97,7 +97,6 @@ const Profil = () => {
       }
 
       setTimeout(() => {
-        removeProfile(userId);
         setIsSwiping(null); 
         setMessage(null); 
         setNotificationType('');
