@@ -21,6 +21,7 @@ const Home = () => {
         <Router>
             <div className="main-content">
                 <Routes>
+                    <Route path="/profil" element={<Profil />} />
                     <Route path="/message" element={<Messagerie />} />
                     <Route path="/inscription" element={<><h1>Inscription</h1><Inscription setIsAuthenticated={setIsAuthenticated}/></>}/>
                     <Route path="/connexion" element={<><h1>Connexion</h1><Connexion setIsAuthenticated={setIsAuthenticated} /></>}/>
@@ -30,7 +31,8 @@ const Home = () => {
 
             <footer>
                 <ul>
-                    <li><Link to="/message">Tchat</Link></li>
+                    {isAuthenticated &&<li><Link to="/profil">Profil</Link></li>}
+                    {isAuthenticated &&<li><Link to="/message">Tchat</Link></li>}
                     {!isAuthenticated && <li><Link to="/connexion">Connexion</Link></li>}
                 </ul>
             </footer>
