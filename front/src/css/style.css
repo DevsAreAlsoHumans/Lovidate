@@ -1,0 +1,116 @@
+/* Conteneur global avec dégradé rose */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    background: linear-gradient(to bottom, #ff5f6d, #ffc371); /* Dégradé du rose au rose clair */
+    font-family: 'Roboto', sans-serif; /* Typographie moderne */
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Carte du profil avec image en background */
+.profile-content {
+    width: 90%; /* Ajuste à 90% de la largeur de l'écran */
+    max-width: 400px; /* Largeur maximale */
+    aspect-ratio: 9 / 16; /* Garde un ratio proche des téléphones */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Section des informations affichée en bas de la carte */
+.profile-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent noir */
+    color: #fff;
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-sizing: border-box;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.profile-info p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #f1f1f1;
+}
+
+/* Gestion du swipe */
+.swipe {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    max-width: 400px;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Styles pour les boutons (optionnels) */
+.action-buttons {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.action-buttons button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #ff5f6d;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.action-buttons button:hover {
+    transform: scale(1.1);
+}
+
+/* Ajout d'une transition fluide */
+.profile-container,
+.profile-content {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Pour des écrans très petits */
+@media (max-width: 768px) {
+    .profile-content {
+        width: 95%; /* Occupe plus de place sur les petits écrans */
+    }
+    .profile-info h2 {
+        font-size: 20px;
+    }
+    .profile-info p {
+        font-size: 14px;
+    }
+}

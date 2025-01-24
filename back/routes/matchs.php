@@ -1,5 +1,5 @@
 <?php
-require '../db.php';
+require 'back/db.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');

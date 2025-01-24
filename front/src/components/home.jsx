@@ -4,11 +4,18 @@ import Profil from './profil';
 import Notification from './notification';
 import Messagerie from './message';
 
+import LogoLovidate from '../assets/Logo_Lovidate2.png';
+import LogoEcrit from '../assets/Logo_Ecrit.png';
+
 const Home = () => {
   return (
     <Router>
       <div>
-        <h1>Bienvenue sur l'application</h1>
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <img src={LogoLovidate} alt="Logo Lovidate" style={{ width: '100px', marginRight: '10px' }} />
+          <img src={LogoEcrit} alt="Logo Ecrit" style={{ width: '200px' }} />
+        </div>
+
         <nav>
           <ul>
             <li><Link to="/profil">Profil</Link></li>
