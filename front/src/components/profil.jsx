@@ -9,6 +9,7 @@ const Profil = () => {
       prenom: "Alice",
       age: 28,
       localisation: "Paris, France",
+      genre: "Femme",
       photo: "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
@@ -16,6 +17,7 @@ const Profil = () => {
       prenom: "Maxime",
       age: 32,
       localisation: "Lyon, France",
+      genre: "Canapé",
       photo: "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
@@ -23,6 +25,7 @@ const Profil = () => {
       prenom: "Sophie",
       age: 25,
       localisation: "Marseille, France",
+      genre: "Non binaire",
       photo: "https://randomuser.me/api/portraits/women/2.jpg"
     },
     {
@@ -30,6 +33,7 @@ const Profil = () => {
       prenom: "Lucas",
       age: 30,
       localisation: "Bordeaux, France",
+      genre: "chaise",
       photo: "https://randomuser.me/api/portraits/men/2.jpg"
     }
   ]);
@@ -47,8 +51,8 @@ const Profil = () => {
       .catch(error => console.error("Erreur lors du chargement des profils", error));
   }, []);
 
-   // Fonction pour envoyer un like à l'API
-   const sendLikeToAPI = async (userId) => {
+  // Fonction pour envoyer un like à l'API
+  const sendLikeToAPI = async (userId) => {
     try {
       const response = await fetch('http://localhost/lovidate/back/routes/matchs.php', {
         method: 'POST',
@@ -74,62 +78,61 @@ const Profil = () => {
     }
   };
   
-// Fonction pour gérer le like ou dislike
-const handleSwipeAction = (direction, userId) => {
-  const user = users.find(user => user.id === userId);
-  
-  if (user) {
-    setIsSwiping({ id: userId, direction }); // Définit l'animation de swipe
+  // Fonction pour gérer le like ou dislike
+  const handleSwipeAction = (direction, userId) => {
+    const user = users.find(user => user.id === userId);
+    
+    if (user) {
+      setIsSwiping({ id: userId, direction }); // Définit l'animation de swipe
 
-    removeProfile(userId);
-
-    if (direction === 'right') {
-      setMessage(`💖 ${user.prenom} a été liké ❤️`);
-      setNotificationType('like'); 
-      sendLikeToAPI(userId);
-    } else if (direction === 'left') {
-      setMessage(`💔 ${user.prenom} a été disliké ❌`);
-      setNotificationType('dislike'); 
-    }
-
-    setTimeout(() => {
       removeProfile(userId);
-      setIsSwiping(null); 
-      setMessage(null); 
-      setNotificationType('');
-    }, 1000);
-  }
-};
 
-// Gestion du swipe
-const swiped = (direction, userId) => {
-  handleSwipeAction(direction, userId);
-};
+      if (direction === 'right') {
+        setMessage(`💖 ${user.prenom} a été liké ❤️`);
+        setNotificationType('like'); 
+        sendLikeToAPI(userId);
+      } else if (direction === 'left') {
+        setMessage(`💔 ${user.prenom} a été disliké ❌`);
+        setNotificationType('dislike'); 
+      }
 
-// Gestion du clic Like
-const handleLike = () => {
-  if (users.length > 0) {
-    const currentUserId = users[users.length - 1].id;
-    handleSwipeAction('right', currentUserId);
-  }
-};
+      setTimeout(() => {
+        removeProfile(userId);
+        setIsSwiping(null); 
+        setMessage(null); 
+        setNotificationType('');
+      }, 1000);
+    }
+  };
 
-// Gestion du clic Dislike
-const handleDislike = () => {
-  if (users.length > 0) {
-    const currentUserId = users[users.length - 1].id;
-    handleSwipeAction('left', currentUserId);
-  }
-};
+  // Gestion du swipe
+  const swiped = (direction, userId) => {
+    handleSwipeAction(direction, userId);
+  };
+
+  // Gestion du clic Like
+  const handleLike = () => {
+    if (users.length > 0) {
+      const currentUserId = users[users.length - 1].id;
+      handleSwipeAction('right', currentUserId);
+    }
+  };
+
+  // Gestion du clic Dislike
+  const handleDislike = () => {
+    if (users.length > 0) {
+      const currentUserId = users[users.length - 1].id;
+      handleSwipeAction('left', currentUserId);
+    }
+  };
 
   // Fonction pour supprimer un profil via ID
   const removeProfile = (userId) => {
     setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
   };
-  
+    
   return (
     <div className="profil-wrapper"> 
-      {/* Conteneur principal des profils */}
       <div className="profile-container">
         {users.length > 0 ? (
           users.map((user) => (
@@ -138,6 +141,7 @@ const handleDislike = () => {
               className={`swipe ${isSwiping?.id === user.id ? (isSwiping.direction === 'right' ? 'swipe-right' : 'swipe-left') : ''}`}
               preventSwipe={['up', 'down']}
             >
+              
               <div className="profile-content" style={{ backgroundImage: `url(${user.photo})` }}>
                 <div className="profile-info">
                   <h2>{user.prenom}, {user.age}</h2>
@@ -157,27 +161,27 @@ const handleDislike = () => {
           <h2 className="no-profile-message">Aucun profil disponible</h2>
         )}
       </div>
-  
-      {users.length > 0 && (
-        <div className="profile-actions">
-          <button 
-            className="dislike-btn" 
-            onClick={() => handleSwipeAction('left', users[users.length - 1].id)}
+
+        {users.length > 0 && (
+          <div className="profile-actions">
+            <button 
+              className="dislike-btn" 
+              onClick={() => handleSwipeAction('left', users[users.length - 1].id)}
+              >
+              ❌
+            </button>
+            <button 
+              className="like-btn" 
+              onClick={() => handleSwipeAction('right', users[users.length - 1].id)}
             >
-            ❌
-          </button>
-          <button 
-            className="like-btn" 
-            onClick={() => handleSwipeAction('right', users[users.length - 1].id)}
-          >
-            <img className="btn-like" src="/src/assets/heart.png" alt="Like"/>
-          </button>
-        </div>
-      )}
-    </div>
+              <img className="btn-like" src="/src/assets/heart.png" alt="Like"/>
+            </button>
+          </div>
+        )}
+      </div>
   );
-  
+
 };
 
 export default Profil;
- 
+

@@ -19,7 +19,6 @@ const Home = () => {
           <Route path="/profil" element={<Profil />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/message" element={<Messagerie />} />
-          <Route path="/" element={<h2>Bienvenue sur la page d'accueil</h2>} />
         </Routes>
 
         <nav className='nav'>
@@ -42,3 +41,4 @@ const Home = () => {
 };
 
 export default Home;
+
