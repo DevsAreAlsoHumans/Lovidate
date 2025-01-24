@@ -26,7 +26,7 @@ const Home = () => {
           <ul>
             <li>
               <Link to="/profil">
-                <FaHome size={30} title="Accueil" />
+              <img className="logo-nav" src='/src/assets/profil.png' ></img>
               </Link>
             </li>
             <li>

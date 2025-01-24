@@ -34,6 +34,10 @@ const Profil = () => {
     }
   ]);
   const [currentUserId] = useState(3);
+  const [message, setMessage] = useState(null);
+  const [notificationType, setNotificationType] = useState(''); 
+  const [isSwiping, setIsSwiping] = useState(null); // Stocke l'ID et la direction de l'animation
+
 
   // Charger les profils depuis l'API
   useEffect(() => {
@@ -70,35 +74,53 @@ const Profil = () => {
     }
   };
   
-  // Fonction pour gérer le swipe vers la droite (like) ou gauche (dislike)
-  const swiped = (direction, userId) => {
-    if (direction === 'right') {
-      alert(`💖 ${users.find(user => user.id === userId).prenom} a été liké ❤️`);
-    } else if (direction === 'left') {
-      alert(`💔 ${users.find(user => user.id === userId).prenom} a été disliké ❌`);
-    }
+// Fonction pour gérer le like ou dislike
+const handleSwipeAction = (direction, userId) => {
+  const user = users.find(user => user.id === userId);
+  
+  if (user) {
+    setIsSwiping({ id: userId, direction }); // Définit l'animation de swipe
 
-    // Supprimer le profil de la liste après le swipe
     removeProfile(userId);
-  };
 
-  // Gestion du clic Like
-  const handleLike = () => {
-    if (users.length > 0) {
-      const currentUserId = users[users.length - 1].id;
-      sendLikeToAPI(currentUserId);
-      removeProfile(currentUserId);
+    if (direction === 'right') {
+      setMessage(`💖 ${user.prenom} a été liké ❤️`);
+      setNotificationType('like'); 
+      sendLikeToAPI(userId);
+    } else if (direction === 'left') {
+      setMessage(`💔 ${user.prenom} a été disliké ❌`);
+      setNotificationType('dislike'); 
     }
-  };
 
-  // Gestion du clic Dislike
-  const handleDislike = () => {
-    if (users.length > 0) {
-      const currentUserId = users[users.length - 1].id;
-      alert(`💔 ${users.find(user => user.id === currentUserId).prenom} a été disliké ❌`);
-      removeProfile(currentUserId);
-    }
-  };
+    setTimeout(() => {
+      removeProfile(userId);
+      setIsSwiping(null); 
+      setMessage(null); 
+      setNotificationType('');
+    }, 1000);
+  }
+};
+
+// Gestion du swipe
+const swiped = (direction, userId) => {
+  handleSwipeAction(direction, userId);
+};
+
+// Gestion du clic Like
+const handleLike = () => {
+  if (users.length > 0) {
+    const currentUserId = users[users.length - 1].id;
+    handleSwipeAction('right', currentUserId);
+  }
+};
+
+// Gestion du clic Dislike
+const handleDislike = () => {
+  if (users.length > 0) {
+    const currentUserId = users[users.length - 1].id;
+    handleSwipeAction('left', currentUserId);
+  }
+};
 
   // Fonction pour supprimer un profil via ID
   const removeProfile = (userId) => {
@@ -106,41 +128,52 @@ const Profil = () => {
   };
   
   return (
-    <div>
+    <div className="profil-wrapper"> 
+      {/* Conteneur principal des profils */}
       <div className="profile-container">
-        {users.map((user) => (
-          <TinderCard
-            key={user.id}
-            className="swipe"
-            onSwipe={(dir) => swiped(dir, user.id)}
-            preventSwipe={['up', 'down']}  // Empêche le swipe haut/bas
-          >
-            <div 
-              className="profile-content"
-              style={{ backgroundImage: `url(${user.photo})` }}
+        {users.length > 0 ? (
+          users.map((user) => (
+            <TinderCard
+              key={user.id}
+              className={`swipe ${isSwiping?.id === user.id ? (isSwiping.direction === 'right' ? 'swipe-right' : 'swipe-left') : ''}`}
+              preventSwipe={['up', 'down']}
             >
-              <div className="profile-info">
-                <h2>{user.prenom}, {user.age}</h2>
-                <p className="profile-location">📍 {user.localisation}</p>
+              <div className="profile-content" style={{ backgroundImage: `url(${user.photo})` }}>
+                <div className="profile-info">
+                  <h2>{user.prenom}, {user.age}</h2>
+                  <p className="profile-location">📍 {user.localisation}</p>
+                </div>
+              
+                {message && (
+                  <div className={`overlay-message ${notificationType}`}>
+                    {message}
+                  </div>
+                )}
+
               </div>
-            </div>
-          </TinderCard>
-        ))}
+            </TinderCard>
+          ))
+        ) : (
+          <h2 className="no-profile-message">Aucun profil disponible</h2>
+        )}
       </div>
   
-      <div className="profile-actions">
-        <button 
-          className="dislike-btn" 
-          onClick={handleDislike}
-        >
-          ❌
-        </button>
-        <button 
-          className="like-btn" 
-          onClick={handleLike}>
-          <img className="btn-like" src="/src/assets/heart.png" alt="Like"/>
-        </button>
-      </div>
+      {users.length > 0 && (
+        <div className="profile-actions">
+          <button 
+            className="dislike-btn" 
+            onClick={() => handleSwipeAction('left', users[users.length - 1].id)}
+            >
+            ❌
+          </button>
+          <button 
+            className="like-btn" 
+            onClick={() => handleSwipeAction('right', users[users.length - 1].id)}
+          >
+            <img className="btn-like" src="/src/assets/heart.png" alt="Like"/>
+          </button>
+        </div>
+      )}
     </div>
   );
   
