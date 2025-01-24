@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../style/style.css';
 import '../style/footer.css';
+
 const Profil = () => {
-    // État pour stocker les utilisateurs récupérés depuis l'API
+    // États pour stocker les utilisateurs, les erreurs et le profil recherché
     const [utilisateurs, setUtilisateurs] = useState([]);
     const [profilRechercher, setProfilRechercher] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // Pour afficher les erreurs
 
     // Utiliser useEffect pour récupérer les utilisateurs lors du chargement du composant
     useEffect(() => {
@@ -15,17 +17,23 @@ const Profil = () => {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des utilisateurs');
+                }
+                return response.json();
+            })
             .then((data) => {
-                setUtilisateurs(data); // Stocke les utilisateurs récupérés
+                setUtilisateurs(data);
+                setErrorMessage('');
             })
             .catch((error) => {
                 console.error('Erreur lors de la récupération des utilisateurs:', error);
+                setErrorMessage('Impossible de récupérer les utilisateurs. Veuillez réessayer plus tard.');
             });
     }, []);
 
-    // Filtrer les utilisateurs en fonction du profil recherché
-    const utilisateursFiltrés = utilisateurs.filter((utilisateur) => {
+    const utilisateursFiltres = utilisateurs.filter((utilisateur) => {
         if (profilRechercher === '') return true;
         return utilisateur.genre === profilRechercher;
     });
@@ -46,9 +54,12 @@ const Profil = () => {
                 <option value="femme">Femme</option>
                 <option value="autres">Autres</option>
             </select>
+
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+
             <ul>
-                {utilisateursFiltrés.map((utilisateur) => (
-                    <li key={utilisateur.id}>{utilisateur.prenom}</li>
+                {utilisateursFiltres.map((utilisateur) => (
+                    <li key={utilisateur.id}>{utilisateur.prenom}{utilisateur.age}{utilisateur.localisation}{utilisateur.photo}</li>
                 ))}
             </ul>
         </div>
