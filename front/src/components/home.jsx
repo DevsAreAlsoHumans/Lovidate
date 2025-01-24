@@ -11,6 +11,7 @@ const Home = () => {
     <Router>
       <div>
         <header>
+          <img className="img-home" src='/src/assets/heart.png'></img>
           <h1 className='title-home'>Lovidate</h1>
         </header>
 
@@ -21,7 +22,7 @@ const Home = () => {
           <Route path="/" element={<h2>Bienvenue sur la page d'accueil</h2>} />
         </Routes>
 
-        <nav>
+        <nav className='nav'>
           <ul>
             <li>
               <Link to="/profil">
@@ -30,7 +31,7 @@ const Home = () => {
             </li>
             <li>
               <Link to="/message">
-                <FaComments size={30} title="Tchat" />
+                <img className="logo-nav" src='/src/assets/HOME.png' ></img>
               </Link>
             </li>
           </ul>

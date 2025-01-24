@@ -76,24 +76,24 @@
   z-index: 1000;
   position: relative;
 }
-
-.like-btn, .dislike-btn {
-  font-size: 30px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s;
-  background-color: #f1f1f1;
-  border-radius: 100px;
-  position: relative;
-  width: 50px;
-  height: 50px;
+.btn-like{
+width: 60px;
+height: 60px;
+object-fit: contain; 
 }
 
-.title-home{
-  font-family: 'Jersey 10', sans-serif;
-  text-align: center;
-  color: #ff758c;
-  font-size: 45px;
+.like-btn, .dislike-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff; 
+  border: none;  
+  border-radius: 50%; 
+  width: 50px;  
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
   
 body{
@@ -111,3 +111,30 @@ nav ul {
   color: linear-gradient(to right, #ff758c, #ff7eb3);
 }
 
+header{
+  display: flex;
+  justify-content: center;
+}
+
+.img-home{
+  width: 50px;
+  margin-left: -15px;
+ height: 50px;
+ margin-top: 29px;
+}
+
+.title-home{
+  font-family: 'Jersey 10', sans-serif;
+  text-align: center;
+  color: #ff758c;
+  font-size: 45px;
+  margin-left: -67px;
+}
+.logo-nav{
+  width: 100px;
+  height: 100px;
+}
+
+.nav{
+  margin-top: -30px;
+}

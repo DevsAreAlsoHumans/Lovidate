@@ -137,9 +137,8 @@ const Profil = () => {
         </button>
         <button 
           className="like-btn" 
-          onClick={handleLike}
-        >
-          ❤️
+          onClick={handleLike}>
+          <img className="btn-like" src="/src/assets/heart.png" alt="Like"/>
         </button>
       </div>
     </div>
