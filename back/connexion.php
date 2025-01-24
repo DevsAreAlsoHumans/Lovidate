@@ -1,7 +1,20 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
 include('db.php');
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:5173');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit(0);  
+}
+
+die("ok");
 
 $data = json_decode(file_get_contents('php://input'), true);
 

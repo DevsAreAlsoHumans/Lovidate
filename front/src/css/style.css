@@ -12,7 +12,6 @@
  
 }
 
-/* Carte du profil avec image en background */
 .profile-content {
   width: 420px;
   height: 650px;
@@ -29,7 +28,6 @@
   margin-top: 20px;
 }
 
-/* Section des informations affichée en bas de la carte */
 .profile-info {
   position: absolute;
   width: 100%;
@@ -53,7 +51,6 @@
   margin-top: 5px;
 }
 
-/* Gestion du swipe */
 .swipe {
   position: absolute;
   width: 100%;
