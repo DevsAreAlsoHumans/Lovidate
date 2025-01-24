@@ -1,9 +1,6 @@
 html, body {
     height: 100%;
     margin: 0;
-}
-
-body {
     display: flex;
     flex-direction: column;
 }
@@ -11,10 +8,8 @@ body {
 
 .main-content {
     flex: 1;
-    background-color: #f4f4f9;
     padding: 20px;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    background-color: #f4f4f9;
 }
 
 footer {
@@ -23,7 +18,10 @@ footer {
     padding: 20px 0;
     width: 100%;
     text-align: center;
-    margin-top: auto; /* Maintient le footer en bas lorsque le contenu est insuffisant */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 footer ul {
@@ -48,6 +46,7 @@ footer li a:hover {
     color: #4CAF50;
 }
 
+/* Pour les petits écrans */
 @media (max-width: 768px) {
     footer ul {
         justify-content: center;
@@ -56,7 +55,4 @@ footer li a:hover {
     footer li {
         margin-bottom: 0;
     }
-}
-.main-content{
-    margin-block: 197PX;
 }
