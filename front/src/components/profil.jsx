@@ -83,7 +83,7 @@ const Profil = () => {
     const user = users.find(user => user.id === userId);
     
     if (user) {
-      setIsSwiping({ id: userId, direction }); // Définit l'animation de swipe
+      setIsSwiping({ id: userId, direction });
 
       removeProfile(userId);
 
